@@ -20,7 +20,7 @@ public class QuizGenerator
     /// <param name="askForMeaning">true: hỏi nghĩa từ từ; false: hỏi từ từ nghĩa.</param>
     /// <param name="numOptions">Số lượng lựa chọn mỗi câu (mặc định 4, bao gồm 1 đúng).</param>
     /// <returns>Danh sách câu hỏi.</returns>
-    public async Task<List<Question>> GenerateQuizAsync(string topic, int numQuestions = -1, bool askForMeaning = true, int numOptions = 4)
+    public async Task<List<Question>> GenerateQuizAsync(string topic, int numQuestions, bool askForMeaning = true, int numOptions = 4)
     {
         if (numOptions < 2)
             throw new ArgumentException("Number of options must be at least 2.", nameof(numOptions));
@@ -51,13 +51,13 @@ public class QuizGenerator
             string correctAnswer;
             if (askForMeaning)
             {
-                // Hỏi nghĩa từ từ
+                // Hỏi nghĩa của từ
                 question.QuestionText = $"What is the meaning of '{word.Value}'?";
                 correctAnswer = word.Mean;
             }
             else
             {
-                // Hỏi từ từ nghĩa
+                // Hỏi từ của nghĩa
                 question.QuestionText = $"What word means '{word.Mean}'?";
                 correctAnswer = word.Value;
             }

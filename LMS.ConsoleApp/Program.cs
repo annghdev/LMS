@@ -14,12 +14,12 @@ try
 
     // Cấu hình bài test
     string topic = Topic.Actions;
-    //int numQuestions = 140; // Số câu hỏi
-    bool askForMeaning = true; // true: hỏi nghĩa từ từ; false: hỏi từ từ nghĩa
+    int numQuestions = -1; // Số câu hỏi, -1 => lấy tất cả
+    bool askForMeaning = false; // true: hỏi nghĩa từ từ; false: hỏi từ từ nghĩa
 
     // Tạo danh sách câu hỏi
     //var questions = await generator.GenerateQuizAsync(topic, numQuestions, askForMeaning);
-    var questions = await generator.GenerateQuizAsync(topic, -1, askForMeaning);
+    var questions = await generator.GenerateQuizAsync(topic, numQuestions , askForMeaning);
 
     if (!questions.Any())
     {
@@ -74,7 +74,7 @@ try
             }
             else
             {
-                Console.WriteLine($"Incorrect. The correct answer is: {question.CorrectAnswer}. Try again.\n");
+                Console.WriteLine($"Incorrect. Try again.\n");
             }
         }
     }
